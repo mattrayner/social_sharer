@@ -7,6 +7,7 @@ require 'rails'
 require 'pry'
 
 require 'social_sharer'
+require 'social_sharer/view_helpers'
 
 RSpec.configure do |config|
   # These two settings work together to allow you to limit a spec run
