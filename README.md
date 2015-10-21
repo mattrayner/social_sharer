@@ -1,0 +1,1 @@
+# Social Sharer [![Build Status](https://img.shields.io/travis/thisisbd/social_sharer.svg)](https://travis-ci.org/thisisbd/social_sharer) [![Gem](https://img.shields.io/gem/v/social_sharer.svg)](https://rubygems.org/gems/social_sharer)

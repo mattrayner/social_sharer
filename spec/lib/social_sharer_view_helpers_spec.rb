@@ -57,7 +57,7 @@ describe SocialSharer::ViewHelpers do
     context 'with invalid options' do
       context 'with no options' do
         it 'raises a SocialSharer::OptionsError as expected' do
-          expect{ social_share_tags(nil) }.to raise_error(SocialSharer::OptionsError, 'Options parameter cannot be nil')
+          expect{ social_share_tags(nil) }.to raise_error(StandardError, 'Options parameter cannot be nil')
         end
       end
 
@@ -78,7 +78,7 @@ describe SocialSharer::ViewHelpers do
               opts = @options.deep_dup
               opts.delete(param.to_sym)
 
-              expect{ social_share_tags(opts) }.to raise_error(SocialSharer::OptionsError, "Unexpected options - expected [\"#{param}\"] to be present")
+              expect{ social_share_tags(opts) }.to raise_error(StandardError, "Unexpected options - expected [\"#{param}\"] to be present")
             end
           end
         end
@@ -109,7 +109,7 @@ describe SocialSharer::ViewHelpers do
               opts = @options.deep_dup
               opts.delete(param.to_sym)
 
-              expect{ social_share_tags(opts) }.to raise_error(SocialSharer::OptionsError, "Unexpected options - expected [\"#{param}\"] to be present")
+              expect{ social_share_tags(opts) }.to raise_error(StandardError, "Unexpected options - expected [\"#{param}\"] to be present")
             end
           end
         end
@@ -123,7 +123,7 @@ describe SocialSharer::ViewHelpers do
               opts = @options.deep_dup
               opts[:twitter].delete(param.to_sym)
 
-              expect{ social_share_tags(opts) }.to raise_error(SocialSharer::OptionsError, "Unexpected options - expected [\"twitter - #{param}\"] to be present")
+              expect{ social_share_tags(opts) }.to raise_error(StandardError, "Unexpected options - expected [\"twitter - #{param}\"] to be present")
             end
           end
         end
@@ -136,7 +136,7 @@ describe SocialSharer::ViewHelpers do
               opts = @options.deep_dup
               opts[:facebook].delete(param.to_sym)
 
-              expect{ social_share_tags(opts) }.to raise_error(SocialSharer::OptionsError, "Unexpected options - expected [\"facebook\", \"facebook - #{param}\"] to be present")
+              expect{ social_share_tags(opts) }.to raise_error(StandardError, "Unexpected options - expected [\"facebook\", \"facebook - #{param}\"] to be present")
             end
           end
         end
