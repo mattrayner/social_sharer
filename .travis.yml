@@ -9,7 +9,6 @@ deploy:
   api_key:
     secure: OJiZnMbBeQBVOpp8q5EmEX/8hmou2CDP7KAJH/kZVGPGAK3ehrOC0xlttQfirW096AufQsl05o0e5VMCE4Uwj7pL1ofPMw5tC76stN4b28/wJ+0a6ofMW0R28cexeVXCgYBJiHBvS6si4HNNYxq0JcpGg1SU3cu6/bIHXgASxcKhlEF7HG1AR2Qc1j4vFo8Gv5HM22MinYnWfJwC3DgHYkUKqKBp32PRg83NYwnlBfxw+J26IMyV8fqvfbCcDx/aZ/4FYiRWCEIi3nOLbOpIVfU77YJdOb8nAfi+HKXqK36gVM1v2hgvj+1RbXE8e5d4Ic0URC/8a0ZedSPeQyhjy0QmeNaqPXx71ECYZ7FK+PAfUmyH/VsBNgiWuulOFDSVhDk0vDBnUfwTvPrTfX1tLwx+lx6uJdHjgvW2Sb3GUAPR0d/JhlzWHXX74UUR0f4hSE465ovRaW/+TbBmBwvoXVNGxsjymb2QPgIeWgHae9yJLlsRV2Qj91itTj3Xvo7xEz704MoC19cvkreb2N//6QcxW6lCW8lLVqWNJWLHYgpYAiVU5UoRA16evMur6Ni2rMKGfUohHwmeKK2hE/SVbu1NNdKw41O2Ox+8T/uMLoaw3Y07rN3gt0fVdz16BwEnnSP++gh8hd0hkFNOHR57GOMvkLIZRK6glajbg72bUbs=
   gem:
-    master: social_sharer
+    social_sharer
   on:
-    tags: true
     repo: thisisbd/social_sharer
