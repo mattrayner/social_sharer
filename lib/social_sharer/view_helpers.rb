@@ -15,8 +15,14 @@ module SocialSharer
       facebook_url = has_individual_settings ? options[:facebook][:url] : options[:url]
       facebook_url += '?src=fb'
 
+      twitter_handle_text = if twitter_handle.nil?
+                              ''
+                            else
+                              "via #{twitter_handle} "
+                            end
+
       link_to('Share on Twitter', 'http://twitter.com/', rel: 'nofollow', onclick: "popUp=window.open("\
-                                                                                     "'http://twitter.com/intent/tweet?text=#{twitter_message} via #{twitter_handle} - #{twitter_url}',"\
+                                                                                     "'http://twitter.com/intent/tweet?text=#{twitter_message} #{twitter_handle_text}#{twitter_url}',"\
                                                                                      "'popupwindow',"\
                                                                                      "'scrollbars=yes,width=800,height=400');"\
                                                                                    "popUp.focus();"\
@@ -42,12 +48,12 @@ module SocialSharer
       correct_opts = true
       missing_opts = []
 
-      root_params = %w( url twitter_message twitter_handle )
+      root_params = %w( url twitter_message )
       twitter_params, facebook_params = [], []
 
       if options[:individual_settings]
         root_params =     %w{ twitter facebook }
-        twitter_params =  %w( url message handle )
+        twitter_params =  %w( url message )
         facebook_params = %w( url )
       end
 
