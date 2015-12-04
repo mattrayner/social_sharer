@@ -35,9 +35,9 @@ module SocialSharer
     #
     # @param [Hash] options Options passed to social_share_tags
     #
-    # @raise [SocialSharer::OptionsError] Raised if the options passed do not meet what we expect
+    # @raise [StandardError] Raised if the options passed do not meet what we expect
     def validate_social_tag_options(options)
-      raise(SocialSharer::OptionsError, 'Options parameter cannot be nil') if options.nil?
+      raise(StandardError, 'Options parameter cannot be nil') if options.nil?
 
       correct_opts = true
       missing_opts = []
@@ -76,7 +76,7 @@ module SocialSharer
         end
       end
 
-      raise(SocialSharer::OptionsError, "Unexpected options - expected #{missing_opts.inspect} to be present") unless correct_opts
+      raise(StandardError, "Unexpected options - expected #{missing_opts.inspect} to be present") unless correct_opts
     end
   end
 end
