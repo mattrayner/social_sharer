@@ -21,18 +21,18 @@ module SocialSharer
                               "via #{twitter_handle} "
                             end
 
-      link_to('Share on Twitter', 'http://twitter.com/', rel: 'nofollow', onclick: "popUp=window.open("\
-                                                                                     "'http://twitter.com/intent/tweet?text=#{twitter_message} #{twitter_handle_text}#{twitter_url}',"\
-                                                                                     "'popupwindow',"\
-                                                                                     "'scrollbars=yes,width=800,height=400');"\
-                                                                                   "popUp.focus();"\
-                                                                                   "return false") +
-      link_to('Share on Facebook', 'http://www.facebook.com/', rel: 'nofollow', onclick: "popUp=window.open("\
-                                                                                           "'http://www.facebook.com/sharer.php?u=#{facebook_url}',"\
-                                                                                           "'popupwindow',"\
-                                                                                           "'scrollbars=yes,width=800,height=400');"\
-                                                                                         "popUp.focus();"\
-                                                                                         "return false")
+      link_to('Share on Twitter', 'http://twitter.com/', rel: 'nofollow', class: 'social_share_tw', onclick: "popUp=window.open("\
+                                                                                                               "'http://twitter.com/intent/tweet?text=#{twitter_message} #{twitter_handle_text}#{twitter_url}',"\
+                                                                                                               "'popupwindow',"\
+                                                                                                               "'scrollbars=yes,width=800,height=400');"\
+                                                                                                             "popUp.focus();"\
+                                                                                                             "return false") +
+      link_to('Share on Facebook', 'http://www.facebook.com/', rel: 'nofollow', class: 'social_share_fb', onclick: "popUp=window.open("\
+                                                                                                                     "'http://www.facebook.com/sharer.php?u=#{facebook_url}',"\
+                                                                                                                     "'popupwindow',"\
+                                                                                                                     "'scrollbars=yes,width=800,height=400');"\
+                                                                                                                   "popUp.focus();"\
+                                                                                                                   "return false")
     end
 
     private
