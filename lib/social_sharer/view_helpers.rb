@@ -7,13 +7,15 @@ module SocialSharer
       has_individual_settings = options[:individual_settings]
 
       twitter_url = has_individual_settings ? options[:twitter][:url] : options[:url]
-      twitter_url += '?src=tw'
+      twitter_url += '?src=tw' unless has_individual_settings
+      twitter_url = CGI.escape( twitter_url )
 
       twitter_message = has_individual_settings ? options[:twitter][:message] : options[:twitter_message]
       twitter_handle = has_individual_settings ? options[:twitter][:handle] : options[:twitter_handle]
 
       facebook_url = has_individual_settings ? options[:facebook][:url] : options[:url]
-      facebook_url += '?src=fb'
+      facebook_url += '?src=fb' unless has_individual_settings
+      facebook_url = CGI.escape( facebook_url )
 
       twitter_handle_text = if twitter_handle.nil?
                               ''
