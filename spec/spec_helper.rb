@@ -3,6 +3,9 @@ $LOAD_PATH.unshift File.join(__FILE__, '../../lib')
 require 'bundler'
 Bundler.setup(:default, :test)
 
+require 'coveralls'
+Coveralls.wear!
+
 require 'rails'
 require 'pry'
 
