@@ -10,46 +10,88 @@ describe SocialSharer::ViewHelpers do
   describe '#social_share_tags' do
     context 'with valid options' do
       context 'without individual_settings set' do
-        before :each do
-          @options = {
-            url: 'http://thisisbd.com',
-            twitter_message: 'This is BD - A creative agency in London',
-            twitter_handle: '@thisisbd'
-          }
+        context 'with a twitter handle' do
+          before :each do
+            @options = {
+              url: 'http://thisisbd.com',
+              twitter_message: 'This is BD - A creative agency in London',
+              twitter_handle: '@thisisbd'
+            }
+          end
+
+          it 'generates the expected twitter tag' do
+            expect( social_share_tags(@options) ).to include("<a rel=\"nofollow\" class=\"social_share_tw\" onclick=\"popUp=window.open(&#39;http://twitter.com/intent/tweet?text=This is BD - A creative agency in London via @thisisbd http%3A%2F%2Fthisisbd.com%3Fsrc%3Dtw&#39;,&#39;popupwindow&#39;,&#39;scrollbars=yes,width=800,height=400&#39;);popUp.focus();return false\" href=\"http://twitter.com/\">Share on Twitter</a>")
+          end
+
+          it 'generates the expected facebook tag' do
+            expect( social_share_tags(@options) ).to include("<a rel=\"nofollow\" class=\"social_share_fb\" onclick=\"popUp=window.open(&#39;http://www.facebook.com/sharer.php?u=http%3A%2F%2Fthisisbd.com%3Fsrc%3Dfb&#39;,&#39;popupwindow&#39;,&#39;scrollbars=yes,width=800,height=400&#39;);popUp.focus();return false\" href=\"http://www.facebook.com/\">Share on Facebook</a>")
+          end
         end
 
-        it 'generates the expected twitter tag' do
-          # expect( social_share_tags(@options) ).to include("<a rel=\"nofollow\" onclick=\"popUp=window.open(&#39;http://twitter.com/intent/tweet?text=This is BD - A creative agency in London via @thisisbd - http://thisisbd.com?src=tw&#39;,&#39;popupwindow&#39;,&#39;scrollbars=yes,width=800,height=400&#39;);popUp.focus();return false\" href=\"http://twitter.com/\">Share on Twitter</a>")
-        end
+        context 'without a twitter handle' do
+          before :each do
+            @options = {
+              url: 'http://thisisbd.com',
+              twitter_message: 'This is BD - A creative agency in London'
+            }
+          end
 
-        it 'generates the expected facebook tag' do
-          expect( social_share_tags(@options) ).to include("<a rel=\"nofollow\" onclick=\"popUp=window.open(&#39;http://www.facebook.com/sharer.php?u=http://thisisbd.com?src=fb&#39;,&#39;popupwindow&#39;,&#39;scrollbars=yes,width=800,height=400&#39;);popUp.focus();return false\" href=\"http://www.facebook.com/\">Share on Facebook</a>")
+          it 'generates the expected twitter tag' do
+            expect( social_share_tags(@options) ).to include("<a rel=\"nofollow\" class=\"social_share_tw\" onclick=\"popUp=window.open(&#39;http://twitter.com/intent/tweet?text=This is BD - A creative agency in London http%3A%2F%2Fthisisbd.com%3Fsrc%3Dtw&#39;,&#39;popupwindow&#39;,&#39;scrollbars=yes,width=800,height=400&#39;);popUp.focus();return false\" href=\"http://twitter.com/\">Share on Twitter</a>")
+          end
         end
       end
 
       context 'with individual_settings set' do
-        before :each do
-          @options = {
-            individual_settings: true,
+        context 'with a twitter handle' do
+          before :each do
+            @options = {
+              individual_settings: true,
 
-            twitter: {
-              url: 'http://mattrayner.co.u/twitter_specific_page',
-              handle: '@mattrayner',
-              message: 'Matt Rayner - A full-stack Rubyist in London'
-            },
+              twitter: {
+                url: 'http://mattrayner.co.u/twitter_specific_page',
+                handle: '@mattrayner',
+                message: 'Matt Rayner - A full-stack Rubyist in London'
+              },
 
-            facebook: {
-              url: 'http://mattrayner.co.uk/facebook_specific_page'
+              facebook: {
+                url: 'http://mattrayner.co.uk/facebook_specific_page'
+              }
             }
-          }
+          end
+
+          it 'generates the expected facebook tag' do
+            expect( social_share_tags(@options) ).to include("<a rel=\"nofollow\" class=\"social_share_fb\" onclick=\"popUp=window.open(&#39;http://www.facebook.com/sharer.php?u=http%3A%2F%2Fmattrayner.co.uk%2Ffacebook_specific_page&#39;,&#39;popupwindow&#39;,&#39;scrollbars=yes,width=800,height=400&#39;);popUp.focus();return false\" href=\"http://www.facebook.com/\">Share on Facebook</a>")
+          end
+
+          it 'generates the expected twitter tag' do
+            expect( social_share_tags(@options) ).to include("<a rel=\"nofollow\" class=\"social_share_tw\" onclick=\"popUp=window.open(&#39;http://twitter.com/intent/tweet?text=Matt Rayner - A full-stack Rubyist in London via @mattrayner http%3A%2F%2Fmattrayner.co.u%2Ftwitter_specific_page&#39;,&#39;popupwindow&#39;,&#39;scrollbars=yes,width=800,height=400&#39;);popUp.focus();return false\" href=\"http://twitter.com/\">Share on Twitter</a>")
+          end
         end
 
-        it 'generates the expected twitter tag' do
-          expect( social_share_tags(@options) ).to include("<a rel=\"nofollow\" onclick=\"popUp=window.open(&#39;http://www.facebook.com/sharer.php?u=http://mattrayner.co.uk/facebook_specific_page?src=fb&#39;,&#39;popupwindow&#39;,&#39;scrollbars=yes,width=800,height=400&#39;);popUp.focus();return false\" href=\"http://www.facebook.com/\">Share on Facebook</a>")
-        end
+        context 'without a twitter handle' do
+          before :each do
+            @options = {
+              individual_settings: true,
 
-        it 'generates the expected facebook tag' do
-          #expect( social_share_tags(@options) ).to include("<a rel=\"nofollow\" onclick=\"popUp=window.open(&#39;http://twitter.com/intent/tweet?text=Matt Rayner - A full-stack Rubyist in London via @mattrayner - http://mattrayner.co.u/twitter_specific_page?src=tw&#39;,&#39;popupwindow&#39;,&#39;scrollbars=yes,width=800,height=400&#39;);popUp.focus();return false\" href=\"http://twitter.com/\">Share on Twitter</a>")
+              twitter: {
+                url: 'http://mattrayner.co.u/twitter_specific_page',
+                message: 'Matt Rayner - A full-stack Rubyist in London'
+              },
+
+              facebook: {
+                url: 'http://mattrayner.co.uk/facebook_specific_page'
+              }
+            }
+          end
+
+          it 'generates the expected facebook tag' do
+            expect( social_share_tags(@options) ).to include("<a rel=\"nofollow\" class=\"social_share_fb\" onclick=\"popUp=window.open(&#39;http://www.facebook.com/sharer.php?u=http%3A%2F%2Fmattrayner.co.uk%2Ffacebook_specific_page&#39;,&#39;popupwindow&#39;,&#39;scrollbars=yes,width=800,height=400&#39;);popUp.focus();return false\" href=\"http://www.facebook.com/\">Share on Facebook</a>")
+          end
+
+          it 'generates the expected twitter tag' do
+            expect( social_share_tags(@options) ).to include("<a rel=\"nofollow\" class=\"social_share_tw\" onclick=\"popUp=window.open(&#39;http://twitter.com/intent/tweet?text=Matt Rayner - A full-stack Rubyist in London http%3A%2F%2Fmattrayner.co.u%2Ftwitter_specific_page&#39;,&#39;popupwindow&#39;,&#39;scrollbars=yes,width=800,height=400&#39;);popUp.focus();return false\" href=\"http://twitter.com/\">Share on Twitter</a>")
+          end
         end
       end
     end
